@@ -1,0 +1,38 @@
+,tipo,porc_nulos,n_valores_unicos
+How did you hear about X Education,str,78.46,9
+Lead Profile,str,74.19,5
+Lead Quality,str,51.59,5
+Asymmetrique Profile Index,str,45.65,3
+Asymmetrique Activity Index,str,45.65,3
+Asymmetrique Activity Score,float64,45.65,12
+Asymmetrique Profile Score,float64,45.65,10
+City,str,39.71,6
+Specialization,str,36.58,18
+Tags,str,36.29,26
+What matters most to you in choosing a course,str,29.32,3
+What is your current occupation,str,29.11,6
+Country,str,26.63,38
+Page Views Per Visit,float64,1.48,114
+TotalVisits,float64,1.48,41
+Last Activity,str,1.11,17
+Lead Source,str,0.39,21
+Do Not Email,str,0.0,2
+Lead Origin,str,0.0,5
+Lead Number,int64,0.0,9240
+Prospect ID,str,0.0,9240
+Newspaper,str,0.0,2
+X Education Forums,str,0.0,2
+Newspaper Article,str,0.0,2
+Magazine,str,0.0,1
+Search,str,0.0,2
+Total Time Spent on Website,int64,0.0,1731
+Do Not Call,str,0.0,2
+Converted,int64,0.0,2
+Get updates on DM Content,str,0.0,1
+Update me on Supply Chain Content,str,0.0,1
+Through Recommendations,str,0.0,2
+Receive More Updates About Our Courses,str,0.0,1
+Digital Advertisement,str,0.0,2
+I agree to pay the amount through cheque,str,0.0,1
+A free copy of Mastering The Interview,str,0.0,2
+Last Notable Activity,str,0.0,16
