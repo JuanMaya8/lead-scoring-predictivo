@@ -112,6 +112,58 @@ def summarize_by_priority(scored: pd.DataFrame, target: str = config.TARGET) -> 
     return summary.reset_index()
 
 
+def gain_curve(scored: pd.DataFrame, target: str = config.TARGET) -> pd.DataFrame:
+    """Cumulative gain: share of conversions captured when contacting the top-k leads."""
+    ordered = scored.sort_values(COL_PROBABILITY, ascending=False, kind="mergesort")
+    n_leads = max(len(ordered), 1)
+    total_conversions = max(ordered[target].sum(), 1)
+    return pd.DataFrame(
+        {
+            "leads_contactados": np.arange(1, len(ordered) + 1),
+            "porc_contactado": np.arange(1, len(ordered) + 1) / n_leads,
+            "porc_capturado": ordered[target].cumsum().to_numpy() / total_conversions,
+        }
+    )
+
+
+@dataclass(frozen=True)
+class CapacityPlan:
+    """Expected outcome of calling only the top ``capacity`` leads."""
+
+    capacity: int
+    expected_conversions: float
+    random_conversions: float
+    conversion_rate: float
+    min_score_reached: int
+
+    @property
+    def uplift(self) -> float:
+        """How many times better than calling leads at random."""
+        return self.expected_conversions / self.random_conversions if self.random_conversions else 0.0
+
+
+def plan_capacity(scored: pd.DataFrame, capacity: int) -> CapacityPlan:
+    """Estimate conversions if the sales team can only contact ``capacity`` leads.
+
+    Expected conversions are the sum of predicted probabilities of the top
+    leads; the random baseline assumes the same number of calls picked blindly.
+    """
+    capacity = int(np.clip(capacity, 0, len(scored)))
+    if capacity == 0:
+        return CapacityPlan(0, 0.0, 0.0, 0.0, 100)
+
+    top = scored.nlargest(capacity, COL_PROBABILITY)
+    expected = float(top[COL_PROBABILITY].sum())
+    baseline = float(scored[COL_PROBABILITY].mean() * capacity)
+    return CapacityPlan(
+        capacity=capacity,
+        expected_conversions=expected,
+        random_conversions=baseline,
+        conversion_rate=expected / capacity,
+        min_score_reached=int(top[COL_SCORE].min()),
+    )
+
+
 # Backward-compatible names used by src/pipeline.py (shared file).
 puntuar_leads = score_leads
 resumen_por_prioridad = summarize_by_priority
