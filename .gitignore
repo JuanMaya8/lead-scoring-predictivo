@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.ipynb_checkpoints/
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Secretos (nunca subir)
+kaggle.json
+.streamlit/secrets.toml
+.env
+
+# OJO: data/raw/Leads.csv, data/processed/, models/ y reports/ SÍ se suben:
+# Streamlit Cloud los necesita para mostrar el dashboard.
