@@ -6,6 +6,7 @@ y los muestra en un **dashboard web** hecho con Streamlit.
 
 **Equipo:** Juan David Maya · Jack
 **Dataset:** [Lead Scoring, X Education (Kaggle)](https://www.kaggle.com/code/kratikulhara/lead-scoring-case-study): 9.240 leads, 37 variables, 38,5% de conversión.
+**Dashboard en línea:** <https://lead-scoring-predictivo-gxznqeerygyejm9egbebgs.streamlit.app/>
 
 ---
 
